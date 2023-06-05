@@ -71,3 +71,6 @@ diagramas_secuencia/
 documentacion/
 run.sh
 
+src/uzantoj/app/routes/
+src/uzantoj/app/tmp/
+

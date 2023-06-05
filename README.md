@@ -155,15 +155,10 @@ En este caso se asume que ya se tiene un entorno configurado (base de datos MySQ
 
 ---
 
-## Correr con Docker ##
-
-Otra opción es utilizar Docker para levantar la aplicación en un ambiente de testing. Notar que todos los datos se perderán cuando se bajen los contenedores.
-
----
 
 ## Instalación ##
 
-Independientemente del método usado para ejecutar la aplicación, luego hay que ingresar a *app-ip:app-port/install* (por ejemeplo, *localhost:9000/install*). Hay varias cosas para completar:
+Luego de ejecutar la aplicación, hay que ingresar a *app-ip:app-port/install* (por ejemeplo, *localhost:9000/install*). Hay varias cosas para completar:
 
 * Nombre de usuario: puede ser cualquier. Es el "admin" inicial.
 * Contraseña: deben coincidir las dos contraseñas.
