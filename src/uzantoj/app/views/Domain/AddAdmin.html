@@ -1,0 +1,25 @@
+{{set . "title" "Vincular usuario a un dominio"}}
+{{template "header.html" .}}
+
+<h1>Vincular usuario a un dominio</h1>
+
+{{template "flash.html" .}}
+
+<p>Vincular usuarios al dominio {{ .domain.Name }}</p>
+
+
+<form method="post">
+  <input type="hidden" name="id" id="id" value="{{ .domain.Id }}">
+  <select class="form-select form-select-lg mb-3" name="user_id" id="user_id">
+    {{ range .users }}
+    <option value="{{ .Id }}">{{ .Name }} {{ .Lastname }} ({{ .Username }})</option>
+    {{ end }}
+  </select>
+  <button type="submit" class="btn btn-outline-dark">Enviar</button>
+</form>
+
+<br>
+<br>
+
+
+{{template "footer.html" .}}

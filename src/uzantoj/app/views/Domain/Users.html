@@ -1,0 +1,98 @@
+{{set . "title" "Dominios"}}
+{{template "header.html" .}}
+
+<script type="text/javascript">
+  function confirm_delete(node, name, lastname, username) {
+      msg = "¿Realmente borrar el usuario "+name+" "+lastname+" ("+username+")?"
+      return confirm(msg);
+  }
+</script>
+
+
+<style>
+  
+  a.ALERTA_BORRAR {
+      color: red !important;
+  }
+  
+</style>
+
+
+
+<h1>Dominios del sistema</h1>
+
+{{template "flash.html" .}}
+
+
+<p>
+  <a href="/user/add"><span data-feather="plus-circle"></span> Agregar dominio</a>
+</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Creado</th>
+      <th scope="col">Administradores</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>prueba.ar</td>
+      <td>2021-09-21 23:34:21</td>
+      <td>
+	<ul>
+	  <li>Fulano
+	    <ul>
+	      <li><a href="/user/view/ID"><span data-feather="eye"></span> Ver usuario</a>&nbsp;&nbsp;</li>
+	    </ul>
+	  </li>
+	</ul>
+      </td>
+      <td>
+	<ul>
+	  <li><a href="/domain/view/ID"><span data-feather="eye"></span> Ver dominio</a>&nbsp;&nbsp;</li>
+	  <li><a href="/domain/add_user/ID"><span data-feather="user-plus"></span> Agregar usuario de email</a>&nbsp;&nbsp;</li>
+	  <li><a href="/domain/add_admin/ID"><span data-feather="users"></span> Vincular administrador al dominio</a>&nbsp;&nbsp;</li>
+	  <li><a href="/domain/delete/ID" class="ALERTA_BORRAR"><span data-feather="alert-triangle"></span> ¡BORRAR DOMINIO!</a></li>
+	</ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>prueba.ar</td>
+      <td>2021-09-21 23:34:21</td>
+      <td>
+	<ul>
+	  <li>Fulano
+	    <ul>
+	      <li><a href="/user/view/ID"><span data-feather="eye"></span> Ver usuario</a>&nbsp;&nbsp;</li>
+	      <li><a href="/domain/delete_admin/ID/ID"><span data-feather="user-minus"></span> Desvincular</a>&nbsp;&nbsp;</li>
+	    </ul>
+	  </li>
+	  <li>Mengano
+	    <ul>
+	      <li><a href="/user/view/ID"><span data-feather="eye"></span> Ver usuario</a>&nbsp;&nbsp;</li>
+	      <li><a href="/domain/delete_admin/ID/ID"><span data-feather="user-minus"></span> Desvincular</a>&nbsp;&nbsp;</li>
+	    </ul>
+	  </li>
+	</ul>
+      </td>
+      <td>
+	<ul>
+	  <li><a href="/domain/view/ID"><span data-feather="eye"></span> Ver dominio</a>&nbsp;&nbsp;</li>
+	  <li><a href="/domain/add_user/ID"><span data-feather="user-plus"></span> Agregar usuario de email</a>&nbsp;&nbsp;</li>
+	  <li><a href="/domain/add_admin/ID"><span data-feather="users"></span> Vincular administrador al dominio</a>&nbsp;&nbsp;</li>
+	  <li><a href="/domain/delete/ID" class="ALERTA_BORRAR"><span data-feather="alert-triangle"></span> ¡BORRAR DOMINIO!</a></li>
+	</ul>
+      </td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+
+
+{{template "footer.html" .}}

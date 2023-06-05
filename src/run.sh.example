@@ -1,0 +1,29 @@
+#!/bin/env bash
+
+export UZANTOJ_APP_SECRET="rfSvuET5zaJV5gIRmos0suC9oDduxg3bqsdfk3e2CJEYCAl"
+export UZANTOJ_APP_NAME="uzantoj"
+export UZANTOJ_APP_ADDR="0.0.0.0"
+export UZANTOJ_APP_PORT="9000"
+export UZANTOJ_APP_BEHIND_PROXY="false"
+export UZANTOJ_APP_TLS="false"
+
+export UZANTOJ_DB_NAME=""
+export UZANTOJ_DB_USER=""
+export UZANTOJ_DB_PASSWORD=""
+export UZANTOJ_DB_SERVER=""
+export UZANTOJ_DB_PORT="3306"
+
+export UZANTOJ_LDAP_SERVER=""
+export UZANTOJ_LDAP_PORT="389"
+export UZANTOJ_LDAP_BIND="cn=admin,dc=nodomain"
+export UZANTOJ_LDAP_PASSWORD=""
+export UZANTOJ_LDAP_ROOT="dc=nodomain"
+
+export UZANTOJ_MAILSERVER_HOSTNAME=""
+export UZANTOJ_MAILSERVER_USER="uzantoj"
+export UZANTOJ_MAILSERVER_HOMEDIR="/var/vdomains"
+
+export UZANTOJ_CONTACT_NAME="Nombre Apellido"
+export UZANTOJ_CONTACT_MAIL="my-email@example.com"
+
+revel run -a uzantoj

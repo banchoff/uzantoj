@@ -1,0 +1,55 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+{{ $domain_id := .domain.Id }}
+{{ $length := len .mailusers }}
+
+
+<script type="text/javascript">
+  function confirm_delete(node, name, lastname, username, domain) {
+      msg = "¿Realmente borrar el usuario "+name+" "+lastname+" ("+username+"@"+domain+")?"
+      return confirm(msg);
+  }
+</script>
+
+<h1>Usuarios de email en el dominio {{ .domain.Name }}</h1>
+
+{{template "flash.html" .}}
+
+<p>
+  <a href="/mailuser/add/{{ $domain_id }}"><span data-feather="plus-circle"></span> Agregar usuario al dominio</a>
+</p>
+
+
+{{ if eq $length 0 }}
+<p>No hay usuarios de email en este dominio.</p>
+{{ else }}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Usuario</th>
+      <th scope="col">Email</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range .mailusers }}
+    <tr>
+      <td>{{ .Name }} {{ .Lastname }}</td>
+      <td>{{ .Username }}</td>
+      <td>{{ .Username }}@{{ .Domain }}</td>
+      <td>
+	<a href="/mailuser/view/{{ $domain_id }}/{{ .Uid }}"><span data-feather="eye"></span> Ver</a>&nbsp;&nbsp;
+	<a href="/mailuser/edit/{{ $domain_id }}/{{ .Uid }}"><span data-feather="edit"></span> Editar</a>&nbsp;&nbsp;
+	<a href="/mailuser/change_password/{{ $domain_id }}/{{ .Uid }}"><span data-feather="lock"></span> Contraseña</a>&nbsp;&nbsp;
+	<a href="/mailuser/delete/{{ $domain_id }}/{{ .Uid }}" onclick="return confirm_delete(this, '{{ .Name }}', '{{ .Lastname }}', '{{ .Username }}', '{{ .Domain }}');"><span data-feather="minus-circle"></span>Borrar</a>
+      </td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>
+{{ end }}
+
+
+{{template "footer.html" .}}

@@ -1,0 +1,51 @@
+{{set . "title" "Información del usuario"}}
+{{template "header.html" .}}
+
+<script type="text/javascript">
+  function confirm_delete(node, name, lastname, username) {
+      msg = "¿Realmente borrar el usuario "+name+" "+lastname+" ("+username+")?"
+      return confirm(msg);
+  }
+</script>
+
+
+<h1>Información del usuario</h1>
+
+{{template "flash.html" .}}
+
+
+<div class="card" style="width: 50rem;">
+  <div class="card-header"><span data-feather="user"></span>
+    Información del usuario
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ .user.Name }} {{ .user.Lastname }} ({{ .user.Username }})</h5>
+    <p class="card-text">Email declarado: <a href="mailto:{{ .user.Email }}">{{ .user.Email }}</a>.</p>
+    <p class="card-text">{{ .user.Name }} {{ .user.Lastname }} tiene el rol de 
+      {{ if eq .user.Role "USER" }}<u>Usuario</u>{{ end }}
+      {{ if eq .user.Role "ADMIN" }}<u>Administrador</u>{{ end }}
+      en el sistema.</p>
+    <p class="card-text">Modificado por última vez: {{ .user.Created }}</p>
+    <p class="card-text">
+	<a href="/user/edit/{{ .user.Id }}"><span data-feather="edit"></span> Editar</a>&nbsp;&nbsp;
+	<a href="/user/change_password/{{ .user.Id }}"><span data-feather="lock"></span> Contraseña</a>&nbsp;&nbsp;
+	<a href="/user/delete/{{ .user.Id }}" onclick="return confirm_delete(this, '{{ .user.Name }}', '{{ .user.Lastname }}', '{{ .user.Username }}');"><span data-feather="minus-circle"></span> Borrar</a>
+    </p>
+
+    <h5 class="card-title">Dominios vinculados</h5>
+    <p>El usuario es administrador de los siguientes dominios:</p>
+    {{ range .domains}}
+    <ul>
+      <li>
+	<a href="/domain/view/{{ .Id }}"><span data-feather="eye"></span> {{ .Name }}</a>
+      </li>
+    </ul>
+    {{ end }}
+  </div>
+</div>
+
+
+
+
+
+{{template "footer.html" .}}

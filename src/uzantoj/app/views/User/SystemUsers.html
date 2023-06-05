@@ -1,0 +1,49 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+<script type="text/javascript">
+  function confirm_delete(node, name, lastname, username) {
+      msg = "¿Realmente borrar el usuario "+name+" "+lastname+" ("+username+")?"
+      return confirm(msg);
+  }
+</script>
+
+<h1>Usuarios del sistema</h1>
+
+{{template "flash.html" .}}
+
+<p>
+  <a href="/user/add"><span data-feather="plus-circle"></span> Agregar usuario</a>
+</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Usuario</th>
+      <th scope="col">Email</th>
+      <th scope="col">Rol</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range .users }}
+    <tr>
+      <td>{{ .Name }} {{ .Lastname }}</td>
+      <td>{{ .Username }}</td>
+      <td>{{ .Email }}</td>
+      <td>{{ if eq .Role "USER" }}Usuario{{ end }}{{ if eq .Role "ADMIN" }}Administrador{{ end }}</td>
+      <td>
+	<a href="/user/view/{{ .Id }}"><span data-feather="eye"></span> Ver</a>&nbsp;&nbsp;
+	<a href="/user/edit/{{ .Id }}"><span data-feather="edit"></span> Editar</a>&nbsp;&nbsp;
+	<a href="/user/change_password/{{ .Id }}"><span data-feather="lock"></span> Contraseña</a>&nbsp;&nbsp;
+	<a href="/user/delete/{{ .Id }}" onclick="return confirm_delete(this, '{{ .Name }}', '{{ .Lastname }}', '{{ .Username }}');"><span data-feather="minus-circle"></span>Borrar</a>
+      </td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>
+
+
+
+{{template "footer.html" .}}

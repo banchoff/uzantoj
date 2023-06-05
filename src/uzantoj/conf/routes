@@ -1,0 +1,86 @@
+# Routes Config
+#
+# This file defines all application routes (Higher priority routes first)
+#
+
+module:testrunner
+# module:jobs
+
+
+GET     /                                       App.Index
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/*filepath                       Static.Serve("public")
+
+
+
+# Manejo de usuarios (los que estan en el MYSQL)
+
+GET 	/user/system_users			User.SystemUsers
+GET	/user/add				User.Add
+POST	/user/add				User.Add
+GET	/user/edit/:id				User.Edit
+POST	/user/edit/:id				User.Edit
+GET	/user/view/:id				User.View
+GET	/user/profile				User.Profile
+GET	/user/delete/:id			User.Delete
+# TODO: el delete seria un GET o POST????
+POST	/user/change_password/:id		User.ChangePassword
+GET	/user/change_password/:id		User.ChangePassword
+
+
+# Manejo de dominios
+
+GET	 /domain/list				Domain.Index
+GET	 /domain/add				Domain.Add
+POST	 /domain/add				Domain.Add
+POST	 /domain/delete/:id			Domain.Delete
+GET	 /domain/delete/:id			Domain.Delete
+GET	 /domain/users/:id			Domain.Users
+GET	 /domain/view/:id			Domain.View
+#GET	 /domain/add_user/:id			Domain.AddMailUser
+#POST	 /domain/add_user/:id			Domain.AddMailUser
+GET	 /domain/add_admin/:id			Domain.AddAdmin
+POST	 /domain/add_admin/:id			Domain.AddAdmin
+GET	 /domain/delete_admin/:id/:uid		Domain.DeleteAdmin
+POST	 /domain/delete_admin/:id/:uid		Domain.DeleteAdmin
+
+# Manejo de usuarios de email (los que estan en el LDAP)
+
+GET 	 /mailuser/list/:id   	       	     	MailUser.Index
+GET	 /mailuser/add/:id			MailUser.Add
+POST	 /mailuser/add/:id			MailUser.Add
+POST	 /mailuser/delete/:id/:uid		MailUser.Delete
+GET	 /mailuser/delete/:id/:uid		MailUser.Delete
+POST	 /mailuser/edit/:id/:uid		MailUser.Edit
+GET	 /mailuser/edit/:id/:uid		MailUser.Edit
+GET	 /mailuser/view/:id/:uid		MailUser.View
+POST	 /mailuser/change_password/:id/:uid	MailUser.ChangePassword
+GET	 /mailuser/change_password/:id/:uid	MailUser.ChangePassword
+
+
+# Funciones varias
+
+GET	 /install				App.Install
+POST	 /install				App.Install
+GET 	 /install_complete			App.InstallComplete
+GET	 /help					App.Help
+GET	 /contact				App.Contact
+POST	 /contact				App.Contact
+GET	 /login					User.Login
+POST	 /login					User.Login
+GET	 /logout				User.Logout
+
+
+# Catch all, this will route any request into the controller path
+#
+#                    **** WARNING ****
+# Enabling this exposes any controller and function to the web.
+# ** This is a serious security issue if used online **
+#
+# For rapid development uncomment the following to add new controller.action endpoints
+# without having to add them to the routes table.
+# *       /:controller/:action                    :controller.:action

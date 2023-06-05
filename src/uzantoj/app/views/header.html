@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{.title}} - Uzantoj</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/css/dashboard.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#"><img width="15%" src="/public/img/logo.png">Home</a>
+      <!-- <ul class="navbar-nav px-3"> -->
+      <!-- 	<li class="nav-item text-wrap"><a class="nav-link" href="#">Logout</a></li> -->
+      <!-- </ul> -->
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+	<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+	  <div class="sidebar-sticky pt-3">
+            <ul class="nav flex-column">
+              <li class="nav-item"><a class="nav-link" href="/domain/list"><span data-feather="globe"></span>Dominios</a></li>
+	      {{ if eq ( session "role" . ) "ADMIN" }}
+	      <li class="nav-item"><a class="nav-link" href="/user/system_users"><span data-feather="users"></span>Usuarios</a></li>
+	      {{ end }}
+              <li class="nav-item"><a class="nav-link" href="/user/profile/"><span data-feather="settings"></span>Mi perfil</a></li>
+            </ul>
+	    <hr>
+            <ul class="nav flex-column">
+              <li class="nav-item"><a class="nav-link" href="/help"><span data-feather="help-circle"></span>Ayuda</a></li>
+	      <li class="nav-item"><a class="nav-link" href="/contact"><span data-feather="mail"></span>Contacto</a></li>
+            </ul>
+	    <hr>
+            <ul class="nav flex-column">
+              <li class="nav-item"><a class="nav-link" href="/logout"><span data-feather="log-out"></span>Logout</a></li>
+            </ul>    
+	  </div>
+	</nav>
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+	  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+	  </div>
+	  <div class="container">
+	    <div class="row">
+	      <div class="span6">

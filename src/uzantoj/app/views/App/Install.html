@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Instalación</title>
+    <!-- Bootstrap core CSS -->
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="public/css/signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+
+    <main class="form-signin">
+      <h1>Instalación</h1>
+
+
+      {{if .errors}}
+      <div class="alert alert-danger" role="alert">
+	<ul>
+	  {{range .errors}}
+          <li> {{.Message}}</li>
+	  {{end}}
+	</ul>
+      </div>
+      {{end}}
+      
+      <form method="post">
+	<img class="mb-4" src="public/img/logo.png" height="150" width="150" alt="Logo">
+	
+	<div class="form-floating">
+	  {{ if .errors.username }} <span data-feather="alert-triangle" style="color: red;" ></span> {{ end }} <input type="text" class="form-control" id="username" placeholder="Nombre de usuario" name="username"  value="{{.flash.username}}" required>
+	</div>
+	
+	<div class="form-floating">
+	  <input type="password" class="form-control" id="password1" placeholder="Contraseña" name="password1"  value="{{.flash.password1}}" required>
+	</div>
+	
+	<div class="form-floating">
+	  <input type="password" class="form-control" id="password2" placeholder="Repetí la contraseña" name="password2"  value="{{.flash.password2}}" required>
+	</div>
+
+	<div class="form-floating"><span>Número de GID:</span>
+	  {{ if .errors.lastgid }} <span data-feather="alert-triangle" style="color: red;" ></span> {{ end }} <input type="text" class="form-control" id="lastgid" placeholder="9000" name="lastgid"  value="{{.flash.lastgid}}" required>
+	</div>
+
+	<div class="form-floating"><span>Número de UID:</span>
+	  {{ if .errors.lastuid }} <span data-feather="alert-triangle" style="color: red;" ></span> {{ end }} <input type="text" class="form-control" id="lastuid" placeholder="5432" name="lastuid"  value="{{.flash.lastuid}}" required>
+	</div>
+	
+	<button class="w-100 btn btn-outline-dark" type="submit">Instalar</button>
+      </form>
+    </main>
+    
+  </body>
+</html>

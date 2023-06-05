@@ -1,0 +1,51 @@
+{{set . "title" "Modificar usuario del sistema"}}
+{{template "header.html" .}}
+
+<h1>Modificar usuario del sistema</h1>
+
+{{template "flash.html" .}}
+
+<p>
+  <a href="/user/change_password/{{ .Id }}">
+    <span data-feather="lock"></span>Cambiar contraseña de {{ .user.Name }} {{ .user.Lastname }}
+  </a>
+</p>
+<form method="post">
+  <input type="hidden" class="form-control" id="id" name="id" value="{{ .user.Id }}">
+  <div class="mb-3">
+    {{ if .errors.name }} <span data-feather="alert-triangle" style="color: red;" ></span> {{ end }} <label for="name" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="name" name="name" value="{{ .user.Name }}" required>
+  </div>
+
+  <div class="mb-3">
+    {{ if .errors.lastname }} <span data-feather="alert-triangle" style="color: red;" ></span> {{ end }} <label for="lastname" class="form-label">Apellido</label>
+    <input type="text" class="form-control" id="lastname" name="lastname" value="{{ .user.Lastname }}" required>
+  </div>
+
+  <div class="mb-3">
+    {{ if .errors.email }} <span data-feather="alert-triangle" style="color: red;" ></span> {{ end }} <label for="email" class="form-label">Dirección de email</label>
+    <input type="email" class="form-control" id="email" name="email" value="{{ .user.Email }}" required>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="role" value="USER" id="role_user" {{ if eq .user.Role "USER" }} checked {{ end }}>
+      <label class="form-check-label" for="rol_user">
+	Usuario (administrador de dominio)
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="role" value="ADMIN" id="role_admin" {{ if eq .user.Role "ADMIN" }} checked {{ end }}>
+      <label class="form-check-label" for="rol_admin">
+	Administrador
+      </label>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-outline-dark">Enviar</button>
+</form>
+
+<br>
+
+
+{{template "footer.html" .}}

@@ -1,0 +1,56 @@
+{{set . "title" "Información del dominio"}}
+{{template "header.html" .}}
+
+<script type="text/javascript">
+  function confirm_delete(node, name) {
+      msg = "¿Realmente borrar el dominio "+name+"?"
+      return confirm(msg);
+  }
+</script>
+
+
+<style>
+  
+  a.ALERTA_BORRAR {
+      color: red !important;
+  }
+  
+</style>
+
+
+<h1>Información del dominio</h1>
+
+{{template "flash.html" .}}
+
+
+<div class="card" style="width: 50rem;">
+  <div class="card-header"><span data-feather="user"></span>
+    Información del dominio
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><a href="https://{{ .domain.Name }}" target="_blank">{{ .domain.Name }} &#x2197;</a></h5>
+    <p class="card-text">Modificado por última vez: {{ .domain.Created }}</p>
+    <p class="card-text">
+	<a href="/mailuser/list/{{ .domain.Id }}"><span data-feather="list"></span> Usuarios de email</a>&nbsp;&nbsp;
+	<a href="/mailuser/add/{{ .domain.Id }}"><span data-feather="user-plus"></span> Agregar usuario de email</a>&nbsp;&nbsp;
+	<a href="/domain/add_admin/{{ .domain.Id }}"><span data-feather="users"></span> Vincular administrador</a>&nbsp;&nbsp;
+	<a class="ALERTA_BORRAR" href="/domain/delete/{{ .domain.Id }}" onclick="return confirm_delete(this, '{{ .domain.Name }}');"><span data-feather="alert-triangle"></span> BORRAR DOMINIO</a>
+    </p>
+    <h5 class="card-title">Administradores</h5>
+
+    {{ if .domain.Admins }}
+    <p>Este dominio está administrado por:</p>
+    {{ range .domain.Admins }}
+    <ul>
+      <li>
+	<a href="/user/view/{{ .Id }}"><span data-feather="eye"></span> {{ .Name }} {{ .Lastname }} ({{ .Username }})</a>
+      </li>
+    </ul>
+    {{ end }}
+    {{ else }}
+    <p>Este dominio no tiene administradores.</p>
+    {{ end }}
+  </div>
+</div>
+
+{{template "footer.html" .}}

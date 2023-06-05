@@ -48,3 +48,26 @@ Thumbs.db
 *.mov
 *.wmv
 
+
+*~
+*.swp
+*.retry
+*__pycache__*
+*.toc
+*.aux
+*.log
+*.bm
+*.nav
+*.out
+*.snm
+*.vrb
+src/uzantoj/target/app/uzantoj/uzantoj
+src/uzantoj/none
+src/uzantoj/go.mod
+src/uzantoj/go.sum
+
+diagramas_er/
+diagramas_secuencia/
+documentacion/
+run.sh
+

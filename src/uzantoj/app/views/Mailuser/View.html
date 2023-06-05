@@ -1,0 +1,36 @@
+{{set . "title" "Información del usuario de email"}}
+{{template "header.html" .}}
+
+<script type="text/javascript">
+  function confirm_delete(node, name, lastname, email) {
+      msg = "¿Realmente borrar el usuario "+name+" "+lastname+" ("+email+")?"
+      return confirm(msg);
+  }
+</script>
+
+
+<h1>Información del usuario de email</h1>
+
+{{template "flash.html" .}}
+
+
+<div class="card" style="width: 50rem;">
+  <div class="card-header"><span data-feather="user"></span>
+    Información del usuario
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ .mailuser.Name }} {{ .mailuser.Lastname }}</h5>
+    <p class="card-text">Email: <a href="mailto:{{ .mailuser.Email }}">{{ .mailuser.Email }}</a>.</p>
+    <p class="card-text">
+	<a href="/mailuser/edit/{{ .domain.Id }}/{{ .mailuser.Uid }}"><span data-feather="edit"></span> Editar</a>&nbsp;&nbsp;
+	<a href="/mailuser/change_password/{{ .domain.Id }}/{{ .mailuser.Uid }}"><span data-feather="lock"></span> Contraseña</a>&nbsp;&nbsp;
+	<a href="/mailuser/delete/{{ .domain.Id }}/{{ .mailuser.Uid }}" onclick="return confirm_delete(this, '{{ .mailuser.Name }}', '{{ .mailuser.Lastname }}', '{{ .mailuser.Email }}');"><span data-feather="minus-circle"></span> Borrar</a>
+    </p>
+  </div>
+</div>
+
+
+
+
+
+{{template "footer.html" .}}

@@ -1,0 +1,38 @@
+{{set . "title" "Agregar usuario de email"}}
+{{template "header.html" .}}
+
+<h1>Agregar usuario de email</h1>
+
+<p>Dominio: {{ .domain.Name }}</p>
+
+{{template "flash.html" .}}
+
+<form method="post">
+  <input type="hidden" class="form-control" id="id" name="id" value="{{ .domain.Id }}">
+  <div class="mb-3">
+    {{ if .errors.name }} <span data-feather="alert-triangle" style="color: red;" ></span> {{ end }} <label for="name" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="name" name="name" value="{{ .flash.name }}" required>
+  </div>
+  
+  <div class="mb-3">
+    {{ if .errors.lastname }} <span data-feather="alert-triangle" style="color: red;" ></span> {{ end }} <label for="lastname" class="form-label">Apellido</label>
+    <input type="text" class="form-control" id="lastname" name="lastname" value="{{ .flash.lastname }}" required>
+  </div>
+  
+  <div class="mb-3">
+    {{ if .errors.username }} <span data-feather="alert-triangle" style="color: red;" ></span> {{ end }} <label for="username" class="form-label">Nombre de usuario</label>
+    <input type="text" class="form-control" id="username" name="username" value="{{ .flash.username }}" required>
+  </div>
+    
+  <div class="mb-3">
+    <label for="password" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  
+  <button type="submit" class="btn btn-outline-dark">Enviar</button>
+</form>
+
+<br>
+
+
+{{template "footer.html" .}}

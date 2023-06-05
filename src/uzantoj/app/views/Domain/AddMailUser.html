@@ -1,0 +1,60 @@
+{{set . "title" "Agregar usuario del sistema"}}
+{{template "header.html" .}}
+
+<h1>Agregar usuario del sistema</h1>
+
+{{template "flash.html" .}}
+
+<form method="post">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="name" name="name" value="{{ .user.Name }}" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="lastname" class="form-label">Apellido</label>
+    <input type="text" class="form-control" id="lastname" name="lastname" value="{{ .user.Lastname }}" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="username" class="form-label">Nombre de usuario</label>
+    <input type="text" class="form-control" id="username" name="username" value="{{ .user.Username }}" required>
+  </div>
+    
+  <div class="mb-3">
+    <label for="password" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="password2" class="form-label">Repetir la contraseña</label>
+    <input type="password" class="form-control" id="password2" name="password2" required>
+  </div>
+  
+  <div class="mb-3">
+    <label for="email" class="form-label">Dirección de email</label>
+    <input type="email" class="form-control" id="email" value="{{ .user.Email }}" name="email" required>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="role" id="role_user" value="USER" checked>
+      <label class="form-check-label" for="rol_user">
+	Usuario (administrador de dominio)
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="role" id="role_admin" value="ADMIN">
+      <label class="form-check-label" for="rol_admin">
+	Administrador
+      </label>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-outline-dark">Enviar</button>
+</form>
+
+<br>
+
+
+{{template "footer.html" .}}

@@ -1,0 +1,40 @@
+{{set . "title" "Formulario de contacto"}}
+{{template "header.html" .}}
+
+<h1>Contacto</h1>
+
+{{template "flash.html" .}}
+
+<div>
+  <p>Podés ponerte en contacto con {{ .contactName }} (<a href="mailto:{{ .contactMail }}">{{ .contactMail }}</a> o por medio del siguiente formulario:</p>
+</div>
+
+
+<div>
+  
+<form method="post">
+  
+  <div class="mb-3">
+    <label for="name" class="form-label">Tu nombre</label>
+    <input type="text" class="form-control" id="" name="contactname" value="{{ .user.Name }} {{ .user.Lastname }} ({{ .user.Username }})" placeholder="{{ .user.Name }} {{ .user.Lastname }} ({{ .user.Username }})" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Tu email</label>
+    <input type="text" class="form-control" id="" name="email" value="{{ .user.Email }}" placeholder="{{ .user.Email }})" required>
+  </div>
+    
+  <div class="mb-3">
+    <label for="message" class="form-label">Mensaje</label>
+    <textarea class="form-control" id="message" name="message" value="" placeholder="Escribí tu mensaje" required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-outline-dark">Enviar</button>
+</form>
+
+</div>
+
+<br>
+
+
+{{template "footer.html" .}}

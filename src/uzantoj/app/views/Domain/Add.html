@@ -1,0 +1,19 @@
+{{set . "title" "Agregar dominio al sistema"}}
+{{template "header.html" .}}
+
+<h1>Agregar dominio al sistema</h1>
+
+{{template "flash.html" .}}
+
+<form method="post">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="name" name="name" value="{{ .domain.Name }}" required>
+  </div>
+  <button type="submit" class="btn btn-outline-dark">Enviar</button>
+</form>
+
+<br>
+
+
+{{template "footer.html" .}}

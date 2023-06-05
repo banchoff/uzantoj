@@ -1,0 +1,107 @@
+{{set . "title" "Dominios"}}
+{{template "header.html" .}}
+
+<script type="text/javascript">
+  function confirm_delete(node, name) {
+      msg = "¿Realmente borrar el dominio "+name+"?"
+      return confirm(msg);
+  }
+  function confirm_desvincular(node, name, lastname, username) {
+      msg = "¿Realmente borrar el usuario "+name+" "+lastname+" ("+username+")?"
+      return confirm(msg);
+  }
+</script>
+
+
+<style>
+  
+  a.ALERTA_BORRAR {
+      color: red !important;
+  }
+  span.SIN_ADMIN {
+      color: orange !important;
+  }
+  
+</style>
+
+
+
+<h1>Dominios del sistema</h1>
+
+{{template "flash.html" .}}
+
+
+<p>
+  <a href="/domain/add"><span data-feather="plus-circle"></span> Agregar dominio</a>
+</p>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Creado</th>
+      <th scope="col">Administradores</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range .domains }}
+    {{ $domain_id := .Id }}
+    <tr>
+      <td><a href="https://{{ .Name }}" target="_blank">{{ .Name }} &#x2197;</a></td>
+      <td>{{ .Created }}</td>
+      <td>
+	{{ $length := len .Admins }}
+
+
+	{{ if eq $length 0 }}
+	<ul>
+	  <li><span class="SIN_ADMIN">Sin administrador.</span></li>
+	</ul>
+	{{end}}
+	
+	{{ if eq $length 1 }}
+	<ul>
+	  {{ range .Admins }}
+	  <li>{{ .Name }} {{ .Lastname }} ({{ .Username }})
+	    <ul>
+	      <li><a href="/user/view/{{ .Id }}"><span data-feather="eye"></span> Ver</a>&nbsp;&nbsp;</li>
+	    </ul>
+	  </li>
+	  {{ end }}
+	</ul>
+	{{ end }}
+
+	{{ if gt $length 1}}
+	<ul>
+	  {{ range .Admins }}
+	  <li>{{ .Name }} {{ .Lastname }} ({{ .Username }})
+	    <ul>
+	      <li><a href="/user/view/{{ .Id }}"><span data-feather="eye"></span> Ver</a>&nbsp;&nbsp;</li>
+	      <li><a href="/domain/delete_admin/{{ $domain_id }}/{{ .Id }}" onclick="return confirm_desvincular(this, '{{ .Name }}', '{{ .Lastname }}', '{{ .Username }}');"><span data-feather="user-minus"></span> Desvincular</a>&nbsp;&nbsp;</li>
+	    </ul>
+	  </li>
+	  {{ end }}
+	</ul>
+	{{ end }}
+      </td>
+      <td>
+	<ul>
+	  <li><a href="/domain/view/{{ .Id }}"><span data-feather="eye"></span> Ver dominio</a>&nbsp;&nbsp;</li>
+	  <li><a href="/mailuser/list/{{ .Id }}"><span data-feather="list"></span> Listar usuarios de email</a>&nbsp;&nbsp;</li>
+	  <li><a href="/mailuser/add/{{ .Id }}"><span data-feather="user-plus"></span> Agregar usuario de email</a>&nbsp;&nbsp;</li>
+	  <!-- <li><a href="/domain/add_list/{{ .Id }}"><span data-feather="send"></span> Agregar una lista de email</a>&nbsp;&nbsp;</li> -->
+	  <li><a href="/domain/add_admin/{{ .Id }}"><span data-feather="users"></span> Vincular administrador al dominio</a>&nbsp;&nbsp;</li>
+	  <li><a href="/domain/delete/{{ .Id}}" onclick="return confirm_delete(this, '{{ .Name }}');" class="ALERTA_BORRAR"><span data-feather="alert-triangle"></span> ¡BORRAR DOMINIO!</a></li>
+	</ul>
+      </td>
+    </tr>    
+    {{ end }}
+  </tbody>
+</table>
+
+
+
+
+{{template "footer.html" .}}

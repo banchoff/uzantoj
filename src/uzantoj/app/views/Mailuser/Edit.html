@@ -1,0 +1,32 @@
+{{set . "title" "Modificar usuario"}}
+{{template "header.html" .}}
+
+<h1>Modificar usuario</h1>
+
+{{template "flash.html" .}}
+
+<p>
+  <a href="/mailuser/change_password/{{ .domain.Id }}/{{ .mailuser.Uid }}">
+    <span data-feather="lock"></span>Cambiar contraseña de {{ .mailuser.Name }} {{ .mailuser.Lastname }}
+  </a>
+</p>
+<form method="post">
+  <input type="hidden" class="form-control" id="id" name="id" value="{{ .domain.Id }}">
+  <input type="hidden" class="form-control" id="uid" name="uid" value="{{ .mailuser.Uid }}">
+  <div class="mb-3">
+    {{ if .errors.name }} <span data-feather="alert-triangle" style="color: red;" ></span> {{ end }} <label for="name" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="name" name="name" value="{{ .mailuser.Name }}" required>
+  </div>
+
+  <div class="mb-3">
+    {{ if .errors.lastname }} <span data-feather="alert-triangle" style="color: red;" ></span> {{ end }} <label for="lastname" class="form-label">Apellido</label>
+    <input type="text" class="form-control" id="lastname" name="lastname" value="{{ .mailuser.Lastname }}" required>
+  </div>
+
+  <button type="submit" class="btn btn-outline-dark">Enviar</button>
+</form>
+
+<br>
+
+
+{{template "footer.html" .}}
