@@ -1,5 +1,6 @@
 # Uzantoj #
 
+
 El objetivo de la aplicación es la creación y borrado usuarios en LDAP. Se asume que estos son usuarios de Mail (Postfix, Courier, Dovecot, etc).
 
 Básicamente se puede:
