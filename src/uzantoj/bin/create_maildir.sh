@@ -19,10 +19,4 @@ ssh "$USER"@"$HOST" "chmod 770 $1"
 #ssh uzantoj_create_user@mi-server.local "chown $1:uzantoj $1"
 ssh "$USER"@"$HOST" "chown $1:uzantoj $1"
 
-# TODO: Crear el MailDir.
-# TODO: Acomodar bien el Skel.
-
-
-# Hardcodeado para que no de error. Pero hay que manejar bien esto.
-
 exit 0

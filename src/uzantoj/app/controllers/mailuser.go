@@ -131,7 +131,6 @@ func (c MailUser) ChangePassword(id, uid int, password, password2 string) revel.
 
 	if !changePasswordMailUser(uid, password, domain.Name) {
 		c.Flash.Error("Error cambiando la contraseña del usuario en el LDAP.")
-		//revel.AppLog.Error("MailUser.ChangePassword - Error cambiando la contraseña del usuario en el LDAP - ", err)
 		return c.RenderTemplate("App/Error.html")
 	}
 	c.Flash.Success("Se modificó la contraseña")
@@ -149,7 +148,6 @@ func (c MailUser) Edit(id, uid int, name, lastname string) revel.Result {
 	mailuser, err := getMailUser(uid, domain.Name)
 	if err != nil {
 		c.Flash.Error("Error obteniendo el usuario del LDAP.")
-		//revel.AppLog.Error("MailUser.Edit - Error cargando el usuario- ", err)
 		return c.RenderTemplate("App/Error.html")
 	}
 	
@@ -168,7 +166,6 @@ func (c MailUser) Edit(id, uid int, name, lastname string) revel.Result {
 	mailuser.Lastname = lastname
 	if !editMailUser(&mailuser) {
 		c.Flash.Error("Error actualizando el usuario en el LDAP.")
-		//revel.AppLog.Error("MailUser.Edit - Error actualizando el usuario en el LDAP - ", err)
 		return c.RenderTemplate("App/Error.html")
 	}
 	return c.Redirect("/mailuser/view/%d/%d", id, uid)

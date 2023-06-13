@@ -51,13 +51,9 @@ func domainsAssignedTo(user_id int) ([]models.Domain, error) {
 
 func hasAdmins(domain_id int) bool {
 	users, _ := getAdminsForDomain(domain_id)
-	// if err != nil {
-	// 	revel.AppLog.Error("Error - ", err)
-	// }
 	return (len(users) > 0)
 }
 
-// TODO: Utilizar transacciones. No creo que justo se creen dos dominios al mismo tiempo, pero por las dudas...
 func getNextGID() int {
 	DBMAP := getDB()
 	defer closeDB(DBMAP)

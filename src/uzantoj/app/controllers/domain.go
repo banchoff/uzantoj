@@ -36,7 +36,6 @@ func (c Domain) Index() revel.Result {
 		domains[i].Admins, err = getAdminsForDomain(int(domains[i].Id))
 		if err != nil {
 			c.Flash.Error("Error cargando los admins para el dominio.", domains[i].Name)
-			//revel.AppLog.Error("Domain.View - Error cargando relacion dominio X usuario - ", err)
 		}
 	}
 	return c.Render(domains)
@@ -47,14 +46,12 @@ func (c Domain) AddAdmin(id, user_id int) revel.Result {
 	users, err := getAllUsersByRole("USER")
 	if err != nil {
 		c.Flash.Error("Error cargando la lista de usuarios que pueden administrar dominios")
-		//revel.AppLog.Error("Error - ", err)
 		return c.RenderTemplate("App/Error.html")
 	}
 	
 	domain, err := getDomainById(id)
 	if err != nil {
 		c.Flash.Error("Error cargando el dominio.")
-		//revel.AppLog.Error("Domain.View - Error - ", err)
 		return c.RenderTemplate("App/Error.html")
 	}
 	

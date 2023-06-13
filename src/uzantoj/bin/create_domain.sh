@@ -17,5 +17,4 @@ ssh "$USER"@"$HOST" "chown :uzantoj $1/users/"
 ssh "$USER"@"$HOST" "chown :uzantoj $1"
 
 
-# Hardcodeado para que no de error. Pero hay que manejar bien esto.
 exit 0

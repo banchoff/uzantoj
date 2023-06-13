@@ -76,7 +76,6 @@ func getUID_(mailuser *models.MailUser) string {
 	return ns
 }
 
-// TODO: Utilizar transacciones. No creo que se creen dos usuarios al mismo tiempo, pero por las dudas...
 func getNextUID() int {
 	DBMAP := getDB()
 	defer closeDB(DBMAP)
